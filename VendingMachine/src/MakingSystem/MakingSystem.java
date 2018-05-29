@@ -7,7 +7,6 @@ public class MakingSystem extends Thread {
 	
 	private WaterTank waterTank;
 	private CoilHeater coilHeater;
-	
 	private DummyProduct product;
 	
 	
@@ -54,126 +53,18 @@ public class MakingSystem extends Thread {
 				}else {
 					System.out.println("물 데우기 실패 !" + coilHeater.sendError());
 				}
-				
-				
-				
-					
-				
 			}
 			
-			
-			
-			
-			
-			
-			
-			
-			
+
 			
 		}
 	}
 	
-
-	
 }
 
-class WaterTank{
-	
-	private int tempuratureOfWater;	//현재 물탱크에 있는 물의 온도
-	private int curAmountOfWater;	//현재 뭍탱크에 있는 물의 양
-	private final int MIN_CAPACITY = 70;	//물탱크의 최소 용량 = 70mL
-	private final int MAX_CAPACITY = 2700;	//물탱크의 최대 용량 = 2700ml = 2.7L
-	
-	private String errorMsg;
-	
-	//클래스 생성자.
-	public WaterTank() {
-		this.curAmountOfWater = 2700;
-		this.tempuratureOfWater = 50;
-	}
-	
-	
-	
-	public int getTempuratureOfWater() {
-		return tempuratureOfWater;
-	}
 
 
 
-	public void setTempuratureOfWater(int tempuratureOfWater) {
-		this.tempuratureOfWater = tempuratureOfWater;
-	}
-
-
-
-	public int getCurAmountOfWater() {
-		return curAmountOfWater;
-	}
-
-
-
-	public void setCurAmountOfWater(int curAmountOfWater) {
-		this.curAmountOfWater = curAmountOfWater;
-	}
-
-
-
-	/*
-	 * 현재 물탱크에 있는 물의 용량을 체크 해서 불린값을 반환하는 메소드
-	 * */
-	public boolean checkProperAmountOfWater() {
-		boolean isCapacity = curAmountOfWater > MIN_CAPACITY ? true : false;
-		
-		if(!isCapacity) {
-			errorMsg = "물없다.";
-		}
-		
-		return isCapacity;
-	}
-	
-	public String sendError() {
-		return errorMsg;
-	}
-	
-	
-	
-}
-
-class CoilHeater{
-	
-	private final int MAX_TEMPURATURE = 90;
-	private final int MIN_TEMPURATURE = 50;
-	
-	private String errorMsg;
-	
-	public int getMAX_TEMPURATURE() {
-		return MAX_TEMPURATURE;
-	}
-
-
-	public int getMIN_TEMPURATURE() {
-		return MIN_TEMPURATURE;
-	}
-
-
-	public boolean checkProperTempuratureOfWater(int curTempOfWater) {
-		boolean isHot = curTempOfWater > 70? true: false;
-		
-		return isHot;
-	}
-	
-
-	public int heatWater() {
-		return MAX_TEMPURATURE;
-	}
-	
-	public String sendError() {
-		return this.errorMsg;
-	}
-	
-	
-	
-}
 
 
 
