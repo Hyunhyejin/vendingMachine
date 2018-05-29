@@ -2,6 +2,7 @@ import java.util.Scanner;
 //돈 반환과 에러메세지는 frontPanel이 출력하지만
 //에러를 인식하는 건 controller
 //재고 확인 메소드 지울 것 같다... 재고 = 컵스택, 물용량 기타 등등이라서...
+//Test
 
 class FrontPanel {
 	private int usermoney = 0;
