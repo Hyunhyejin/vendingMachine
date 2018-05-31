@@ -5,17 +5,17 @@ public class DummyInput {
 	
 	Scanner sc;
 		
-	DummyInput(){
+	public DummyInput(){
 		sc = new Scanner(System.in);
 	}
 		
-	int inInteger() {
+	public int inInteger() {
 		int inInt = sc.nextInt();
 		sc.nextLine();
 		return inInt; 
 	}
 		
-	String inString() {
+	public String inString() {
 		String inString = sc.nextLine();
 		return inString;
 	}

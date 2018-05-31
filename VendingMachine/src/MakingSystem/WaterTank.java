@@ -11,11 +11,9 @@ public class WaterTank{
 	
 	//클래스 생성자.
 	public WaterTank() {
-		this.curAmountOfWater = 2700;
+		this.curAmountOfWater = 2000;
 		this.tempuratureOfWater = 50;
 	}
-	
-	
 	
 	public int getTempuratureOfWater() {
 		return tempuratureOfWater;
@@ -56,6 +54,18 @@ public class WaterTank{
 	
 	public String sendError() {
 		return errorMsg;
+	}
+	
+	
+	public int putWaterInMixPipe(int amount) {
+		
+		if(curAmountOfWater < (amount)) {
+			return -1;
+		}else {
+			curAmountOfWater -=amount;
+			return amount;
+		}
+		
 	}
 	
 	
