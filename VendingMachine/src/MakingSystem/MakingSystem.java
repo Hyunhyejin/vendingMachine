@@ -23,6 +23,7 @@ public class MakingSystem extends Thread {
 
 	// 시스템 가동으로 상태를 변경하는 메소드.
 	public void startMakingSystem(DummyProduct product) {
+		this.product = product;
 		this.state = true;
 		this.start();
 	}
@@ -45,7 +46,7 @@ public class MakingSystem extends Thread {
 			if(!coilHeater.checkProperTempuratureOfWater(waterTank.getTempuratureOfWater())) {
 				System.out.println("물을 데운다.");
 				
-				int temp = coilHeater.heatWater();
+				int temp = coilHeater.heatWater();	
 				
 				if(temp > coilHeater.getMIN_TEMPURATURE()) {
 					waterTank.setTempuratureOfWater(coilHeater.heatWater());
