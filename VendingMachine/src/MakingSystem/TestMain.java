@@ -1,6 +1,7 @@
 package MakingSystem;
 import Parents.EndProductCallBack;
 import Parents.Product;
+import Product.Coffee1;
 import Util.DummyInput;
 
 public class TestMain {
@@ -21,7 +22,7 @@ public class TestMain {
 			int i = in.inInteger();
 			if(i==1) {
 				
-				BlakCoffee blakCoffee = new BlakCoffee();
+				Coffee1 blakCoffee = new Coffee1();
 				Product product = (Product) blakCoffee;
 				mksys.startMakingSystem(product);
 				

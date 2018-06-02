@@ -1,9 +1,9 @@
-package MakingSystem;
+package Product;
 import Parents.Product;
 
-public class BlakCoffee extends Product {
+public class Coffee1 extends Product {
 
-	public BlakCoffee() {
+	public Coffee1() {
 		super();
 		// TODO Auto-generated constructor stub
 		this.amountOfCoffeePowder = 3;
@@ -12,7 +12,7 @@ public class BlakCoffee extends Product {
 		this.amountOfWater = 10;
 		this.productId = 1;
 		this.productPrice = 300;
-		this.productName = "커피A";
+		this.productName = "커피1";
 		
 	}
 

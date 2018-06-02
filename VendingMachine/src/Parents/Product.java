@@ -12,10 +12,22 @@ public class Product {
 	protected int productPrice;
 	protected String productName;
 	
-	public Product(){
+
+	public Product() {
 		
 	}
 	
+	public Product(int amountOfCoffeePowder, int amountOfCreamPowder, int amountOfSugarPowder,
+			int amountOfWater) {
+		super();
+	
+		this.amountOfCoffeePowder = amountOfCoffeePowder;
+		this.amountOfCreamPowder = amountOfCreamPowder;
+		this.amountOfSugarPowder = amountOfSugarPowder;
+		this.amountOfWater = amountOfWater;
+
+	}
+
 	public int getProductId() {
 		return productId;
 	}

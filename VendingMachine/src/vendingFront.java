@@ -46,6 +46,7 @@ public class vendingFront extends JFrame implements ActionListener{
 	
 	public vendingFront(){
 		super("vending machine"); 
+		
 		// JFrame placing
 		frame.setLayout(new BorderLayout(30, 30));
 		
@@ -92,9 +93,12 @@ public class vendingFront extends JFrame implements ActionListener{
 		frame.setVisible(true);
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		eventHandler();
 	}
 	
 	public void eventHandler() {
+
 		this.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent we) {
 				System.exit(0);	
@@ -118,6 +122,7 @@ public class vendingFront extends JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent ae) {
 		Object obj = ae.getSource();
+		
 		if(obj==btnMoney) btnMoney_Click();
 		if(obj==btnCoffee1) btnCoffee_Click();
 		if(obj==btnCoffee2) btnCoffee_Click();
@@ -137,7 +142,7 @@ public class vendingFront extends JFrame implements ActionListener{
 	}
 	
 	public void btnCoffee_Click() {
-		
+		System.out.println("Å¬¸¯");
 	}
 	
 	public void btnMCoffee_Click() {
