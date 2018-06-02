@@ -1,5 +1,6 @@
 package MakingSystem;
 
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -7,7 +8,7 @@ import java.util.Stack;
 
 import Parents.Product;
 
-public class CupStack implements Parents.Stack {
+public class CupStack implements Stack {
 
 	private final int MAX_COUNT_OF_CUP = 100;
 	private Queue<Cup> cups;

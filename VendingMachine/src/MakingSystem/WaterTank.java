@@ -1,5 +1,6 @@
 package MakingSystem;
 
+
 public class WaterTank{
 	
 	private int tempuratureOfWater;	//현재 물탱크에 있는 물의 온도

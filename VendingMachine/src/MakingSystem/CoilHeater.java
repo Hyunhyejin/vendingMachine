@@ -1,5 +1,6 @@
 package MakingSystem;
 
+
  public class CoilHeater{
 	
 	private final int MAX_TEMPURATURE = 90;

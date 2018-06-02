@@ -1,4 +1,5 @@
 package Util;
+
 import java.util.Scanner;
 
 public class DummyInput {

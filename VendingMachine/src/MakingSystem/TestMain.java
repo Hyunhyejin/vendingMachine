@@ -1,6 +1,4 @@
 package MakingSystem;
-
-
 import Parents.Product;
 import Util.DummyInput;
 

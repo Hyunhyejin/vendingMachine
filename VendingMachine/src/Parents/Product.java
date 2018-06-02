@@ -1,5 +1,6 @@
 package Parents;
 
+
 public class Product {
 
 	protected int productId;

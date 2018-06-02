@@ -1,5 +1,4 @@
 package MakingSystem;
-
 import Parents.Product;
 
 public class MixPipe {

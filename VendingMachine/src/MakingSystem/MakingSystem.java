@@ -1,4 +1,5 @@
 package MakingSystem;
+
 import java.util.Scanner;
 
 import Parents.Product;
