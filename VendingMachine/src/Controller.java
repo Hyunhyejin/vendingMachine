@@ -1,9 +1,10 @@
-import MakingSystem.BlakCoffee;
+
 import MakingSystem.MakingSystem;
 import Parents.EndProductCallBack;
 import Parents.Product;
+import Product.Coffee1;
 
-//잔돈이 멋대로 초기화됨 이거 수정해야 한다!!
+//얍
 
 public class Controller {
 	private int TotalMoney = 2000;
@@ -76,7 +77,7 @@ public class Controller {
 			//수정 예정
 			System.out.println("확인되었습니다. 잔돈이 남아있습니다.");
 			difference = userMoney - product.getProductPrice();
-			makingsystem.startMakingSystem(new BlakCoffee());
+			makingsystem.startMakingSystem(this.product);
 		}
 	}
 
