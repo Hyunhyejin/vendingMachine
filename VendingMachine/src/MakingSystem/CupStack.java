@@ -7,8 +7,9 @@ import java.util.Queue;
 import java.util.Stack;
 
 import Parents.Product;
+import Parents.VendingMachineStack;
 
-public class CupStack implements Stack {
+public class CupStack implements VendingMachineStack {
 
 	private final int MAX_COUNT_OF_CUP = 100;
 	private Queue<Cup> cups;

@@ -24,7 +24,7 @@ public class vending {
 		}		
 		
 		//GUI에서 커피 버튼으로 입력될 예정
-		c.check("A커피");
+		//c.check("A커피");
 		c.setTotalMoney(200);		
 		c.checkChange(p.getMoney());
 		c.checkProduct();
