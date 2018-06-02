@@ -117,7 +117,6 @@ public class MakingSystem implements Runnable {
 			//믹스하기
 			Product p = mixPipe.mix(amountOfCoffeeP, amountOfCreamP, amountOfsugarP, amountOfWater);
 			cup.setProductInCup(p);
-			System.out.println(p.getProductName()+"완성했다.");
 			
 			//콜백함수로 제품제조가 완료 되었음을 알리기 
 			this.endProductCallBack.endProductCallBack(this.product,"success");
