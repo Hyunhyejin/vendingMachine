@@ -40,4 +40,8 @@ public class FrontPanel {
 		System.exit(0);
 	}
 	
+	void init() {
+		this.usermoney =0;
+	}
+	
 }

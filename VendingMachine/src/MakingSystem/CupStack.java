@@ -7,8 +7,9 @@ import java.util.Queue;
 import java.util.Stack;
 
 import Parents.Product;
+import Parents.VendingMachineStack;
 
-public class CupStack implements Stack {
+public class CupStack implements VendingMachineStack {
 
 	private final int MAX_COUNT_OF_CUP = 100;
 	private Queue<Cup> cups;
@@ -16,7 +17,7 @@ public class CupStack implements Stack {
 	public CupStack() {
 		super();
 		cups = new LinkedList<Cup>();
-		for(int i =0; i<3; i++) {
+		for(int i =0; i<100; i++) {
 			cups.offer(new Cup());
 		}
 		
@@ -37,6 +38,7 @@ public class CupStack implements Stack {
 		// TODO Auto-generated method stub
 		
 		if(cups.peek()!=null) {
+			
 			return cups.poll();
 		}
 		

@@ -9,7 +9,8 @@ public class Product {
 	protected int amountOfCreamPowder;
 	protected int amountOfSugarPowder;
 	protected int amountOfWater;
-	protected int productMoney;
+	protected int productPrice;
+	protected String productName;
 	
 	public Product(){
 		
@@ -34,6 +35,15 @@ public class Product {
 	public int getAmountOfWater() {
 		return amountOfWater;
 	}
+
+	public int getProductPrice() {
+		return productPrice;
+	}
+
+	public String getProductName() {
+		return productName;
+	}
+	
 	
 	
 	

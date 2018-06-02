@@ -1,7 +1,7 @@
 package Parents;
 
 
-public interface Stack {
+public interface VendingMachineStack {
 	
 	public void put(Object ins);
 	public Object get();
