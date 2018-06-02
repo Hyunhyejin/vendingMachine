@@ -6,7 +6,20 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.*;
 
+import Product.Coffee1;
+import Product.Coffee2;
+import Product.Coffee3;
+import Product.MixCoffee1;
+import Product.MixCoffee2;
+import Product.MixCoffee3;
+import Product.Tea1;
+import Product.Tea2;
+import Product.Tea3;
+
 public class vendingFront extends JFrame implements ActionListener{
+	Controller controller = new Controller();
+	FrontPanel frontpanel = new FrontPanel();
+	
 	//JFrame 생성
 	JFrame frame = new JFrame();
 	
@@ -148,6 +161,7 @@ public class vendingFront extends JFrame implements ActionListener{
 	public void btnMoney_Click() {
 		String strMoney = txtMoney.getText();
 		input = Integer.parseInt(strMoney);
+		
 		// acceptmoney(temp);
 		if (input < 300) {
 			txtError.setText("돈이 부족합니다!");
@@ -164,24 +178,52 @@ public class vendingFront extends JFrame implements ActionListener{
 	public void btnCoffee_Click(int coffeenum) {
 		switch(coffeenum) {
 		case 1:
+			controller.check(new Coffee1());
 			break;
 		case 2:
+			controller.check(new Coffee2());
 			break;
 		case 3:
+			controller.check(new Coffee3());
 			break;
-			
 		}
-		JOptionPane.showMessageDialog(null, "일반커피 " + coffeenum + "의 제조를 시작합니다.");
-    	makingMsg();
+		
+
+			JOptionPane.showMessageDialog(null, "일반커피 " + coffeenum + "의 제조를 시작합니다.");
+	    	makingMsg();
+
+	
 	}
 
 
 	public void btnMCoffee_Click(int coffeenum) {
+		switch(coffeenum) {
+		case 1:
+			controller.check(new MixCoffee1());
+			break;
+		case 2:
+			controller.check(new MixCoffee2());
+			break;
+		case 3:
+			controller.check(new MixCoffee3());
+			break;
+		}
 		JOptionPane.showMessageDialog(null, "믹스커피 " + coffeenum + "의 제조를 시작합니다.");
     	makingMsg();
 	}
 	
 	public void btnNCoffee_Click(int coffeenum) {
+		switch(coffeenum) {
+		case 1:
+			controller.check(new Tea1());
+			break;
+		case 2:
+			controller.check(new Tea2());
+			break;
+		case 3:
+			controller.check(new Tea3());
+			break;
+		}
 		JOptionPane.showMessageDialog(null, "일반 차  " + coffeenum + "의 제조를 시작합니다.");
     	makingMsg();
 	}
@@ -223,7 +265,26 @@ public class vendingFront extends JFrame implements ActionListener{
 	
 	public void makingMsg() {
 		current = input - 300;
-		this.sleep(2000);
+		
+		controller.startMaking();
+		Thread checkState =  new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				while(true) {
+					System.out.println("음료 만드는 중 ...");
+					
+					if(controller.result.equals("success")) {
+						System.out.println("벗어남.");
+						break;
+					}
+				}
+			}
+		});
+		checkState.start();
+		
+		
 		String temp = String.valueOf(current);
 		btnRefund.setEnabled(false);
 		txtMoney.setText(temp);
@@ -244,7 +305,6 @@ public class vendingFront extends JFrame implements ActionListener{
 			Thread.sleep(time);
 		} catch (InterruptedException e) {}
 	}
-	
 	
 	private int usermoney = 0;
 	//돈 받기
@@ -290,7 +350,6 @@ public class vendingFront extends JFrame implements ActionListener{
 	void init() {
 		this.usermoney =0;
 	}
-	
 
 	public static void main(String[] args){
 		new vendingFront();

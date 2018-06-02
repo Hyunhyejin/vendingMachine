@@ -41,7 +41,6 @@ public class CoffeeHolder extends Holder {
 			return -1;
 		}else {
 			curAmountOfPowder -=amount;
-			System.out.println(curAmountOfPowder);
 			return amount;
 		}
 		

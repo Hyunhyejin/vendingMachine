@@ -4,9 +4,9 @@ import Parents.EndProductCallBack;
 import Parents.Product;
 import Product.Coffee1;
 
-//잔돈이 멋대로 초기화됨 이거 수정해야 한다!!
+//얍
 
-public class Controller {
+public class Controller implements EndProductCallBack{
 	private int TotalMoney = 2000;
 	//TotalMoney에 빼둘 돈 (TotalMoney - (userMoney - productMoney)
 	int difference;
@@ -17,18 +17,19 @@ public class Controller {
 	MakingSystem makingsystem;
 	Product product;
 	FrontPanel fronpanel = new FrontPanel();
-
+	String result;
+	
 	public Controller() {
-		makingsystem = new MakingSystem(new EndProductCallBack() {
-
-			@Override
-			public void endProductCallBack(Product product, String result) {
-				TotalMoney -= difference;
-				// TODO Auto-generated method stub
-				System.out.println("완성됬다아아ㅏㅏ");
-			}
-		});	
+		makingsystem = new MakingSystem(this);
 	}
+	
+	
+	@Override
+	public void endProductCallBack(Product product, String result) {
+		// TODO Auto-generated method stub
+		this.result = result;
+	}
+
 
 	//물건 가격 메소드
 	public int getPrice() {
@@ -77,7 +78,7 @@ public class Controller {
 			//수정 예정
 			System.out.println("확인되었습니다. 잔돈이 남아있습니다.");
 			difference = userMoney - product.getProductPrice();
-			makingsystem.startMakingSystem(this.product);
+			
 		}
 	}
 
@@ -86,6 +87,10 @@ public class Controller {
 	//에러가 났다고 알려주면 된다
 	public boolean error() {
 		return false;
+	}
+	
+	public void startMaking() {
+		makingsystem.startMakingSystem(this.product);
 	}
 
 
