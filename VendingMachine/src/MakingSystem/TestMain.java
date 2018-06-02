@@ -15,6 +15,9 @@ public class TestMain {
 			public void endProductCallBack(Product product, String result) {
 				// TODO Auto-generated method stub
 				System.out.println("dhkstjdjdjj");
+
+				System.out.println("dkdkdkdkdkdkdk");
+
 			}
 		});
 		while(true) {

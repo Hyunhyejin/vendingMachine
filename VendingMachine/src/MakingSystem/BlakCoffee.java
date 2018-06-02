@@ -11,7 +11,9 @@ public class BlakCoffee extends Product {
 		this.amountOfSugarPowder = 3;
 		this.amountOfWater = 10;
 		this.productId = 1;
-		this.productMoney = 300;
+		this.productPrice = 300;
+		this.productName = "Ä¿ÇÇA";
+		
 	}
 
 }

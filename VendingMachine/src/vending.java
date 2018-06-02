@@ -27,7 +27,7 @@ public class vending {
 		//c.check("AÄ¿ÇÇ");
 		c.setTotalMoney(200);		
 		c.checkChange(p.getMoney());
-		c.checkProduct();
+		
 		
 		p.giveChange(c.getPrice());
 		p.giveProduct(c.getName());

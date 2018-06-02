@@ -17,7 +17,7 @@ public class CupStack implements VendingMachineStack {
 	public CupStack() {
 		super();
 		cups = new LinkedList<Cup>();
-		for(int i =0; i<3; i++) {
+		for(int i =0; i<100; i++) {
 			cups.offer(new Cup());
 		}
 		
@@ -38,6 +38,7 @@ public class CupStack implements VendingMachineStack {
 		// TODO Auto-generated method stub
 		
 		if(cups.peek()!=null) {
+			
 			return cups.poll();
 		}
 		
