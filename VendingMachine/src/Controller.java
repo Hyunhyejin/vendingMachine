@@ -4,7 +4,7 @@ import Parents.EndProductCallBack;
 import Parents.Product;
 import Product.Coffee1;
 
-//잔돈이 멋대로 초기화됨 이거 수정해야 한다!!
+//얍
 
 public class Controller {
 	private int TotalMoney = 2000;

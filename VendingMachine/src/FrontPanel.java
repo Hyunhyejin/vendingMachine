@@ -1,3 +1,5 @@
+//올리는용
+
 public class FrontPanel {
 	private int usermoney = 0;
 	//돈 받기
