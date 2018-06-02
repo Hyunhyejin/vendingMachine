@@ -13,7 +13,7 @@ public class WaterTank{
 	//클래스 생성자.
 	public WaterTank() {
 		this.curAmountOfWater = 2000;
-		this.tempuratureOfWater = 50;
+		this.tempuratureOfWater = 90;
 	}
 	
 	public int getTempuratureOfWater() {

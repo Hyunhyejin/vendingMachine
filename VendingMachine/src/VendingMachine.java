@@ -1,9 +1,9 @@
 import java.util.Scanner;
 
-import MakingSystem.BlakCoffee;
 import MakingSystem.MakingSystem;
 import Parents.EndProductCallBack;
 import Parents.Product;
+import Product.Coffee1;
 import Util.DummyInput;
 
 public class VendingMachine {
@@ -35,7 +35,11 @@ public class VendingMachine {
 				
 				//GUI에서 커피 버튼으로 입력될 예정
 		
+<<<<<<< HEAD
 				c.check(new BlakCoffee());	
+=======
+				c.check(new Coffee1());
+>>>>>>> cdc50b1c122ed5d2e6a5438a2cb9baa693ae1fa6
 				c.checkChange(p.getMoney());
 				
 				p.giveChange(c.getPrice());
