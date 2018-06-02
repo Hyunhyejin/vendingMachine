@@ -9,6 +9,7 @@ public class Product {
 	protected int amountOfCreamPowder;
 	protected int amountOfSugarPowder;
 	protected int amountOfWater;
+	protected int productMoney;
 	
 	public Product(){
 		
