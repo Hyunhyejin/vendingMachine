@@ -1,6 +1,7 @@
 package MakingSystem;
 import java.util.Scanner;
 
+import Parents.EndProductCallBack;
 import Parents.Product;
 
 public class MakingSystem implements Runnable {
@@ -16,9 +17,11 @@ public class MakingSystem implements Runnable {
 	private CupStack cupStack;
 	private MixPipe mixPipe;
 	
+	private EndProductCallBack endProductCallBack;
 	
-	public MakingSystem() {
+	public MakingSystem(EndProductCallBack endProductCallBack) {
 		super();
+		this.endProductCallBack = endProductCallBack;
 		
 		waterTank = new WaterTank();
 		coilHeater = new CoilHeater();
