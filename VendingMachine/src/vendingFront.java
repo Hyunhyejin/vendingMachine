@@ -142,7 +142,7 @@ public class vendingFront extends JFrame implements ActionListener{
 	}
 	
 	public void btnCoffee_Click() {
-		System.out.println("Å¬¸¯");
+		
 	}
 	
 	public void btnMCoffee_Click() {

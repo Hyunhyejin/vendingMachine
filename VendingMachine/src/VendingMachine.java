@@ -35,8 +35,7 @@ public class VendingMachine {
 				
 				//GUI에서 커피 버튼으로 입력될 예정
 		
-				c.check("A커피");
-				c.setTotalMoney(200);		
+				c.check(new Coffee1());
 				c.checkChange(p.getMoney());
 				
 				p.giveChange(c.getPrice());

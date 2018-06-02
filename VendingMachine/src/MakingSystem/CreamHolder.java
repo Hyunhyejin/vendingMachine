@@ -4,7 +4,7 @@ import Parents.Holder;
 public class CreamHolder extends Holder {
 
 	private final int POWDER_TYPE = 2;
-	private int curAmountOfPowder = 11;	//현재 홀더에 채워져 있는 가루의 양.
+	private int curAmountOfPowder = 500;	//현재 홀더에 채워져 있는 가루의 양.
 
 	
 	public CreamHolder() {
