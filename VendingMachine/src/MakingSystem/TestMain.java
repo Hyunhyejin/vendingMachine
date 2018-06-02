@@ -10,14 +10,14 @@ public class TestMain {
 		// TODO Auto-generated method stub
 		
 		DummyInput in = new DummyInput();
-		MakingSystem mksys = new MakingSystem();
+		//MakingSystem mksys = new MakingSystem();
 		while(true) {
 			int i = in.inInteger();
 			if(i==1) {
 				
 				BlakCoffee blakCoffee = new BlakCoffee();
 				Product product = (Product) blakCoffee;
-				mksys.startMakingSystem(product);
+				//mksys.startMakingSystem(product);
 				
 			}else if(i== 10){
 				break;
