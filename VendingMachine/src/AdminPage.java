@@ -5,6 +5,8 @@ import javax.swing.border.*;
 
 public class AdminPage extends JFrame implements ActionListener {
 	
+	AdminHandler handler = new AdminHandler();
+	
 	// JPanel »ý¼º
 	JPanel west = new JPanel();
 	JPanel east = new JPanel();
@@ -85,10 +87,6 @@ public class AdminPage extends JFrame implements ActionListener {
 		btnApply.addActionListener(this);
 		btnReset.addActionListener(this);
 	}
-	
-	public static void main (String[] args) {
-		new AdminPage();
-	}
 
 	@Override
 	public void actionPerformed(ActionEvent a) {
@@ -101,15 +99,19 @@ public class AdminPage extends JFrame implements ActionListener {
 	}
 	
 	public void btnExit_Click() {
-		
+		handler.exitPage();
 	}
 	
 	public void btnApply_Click() {
-		
+		handler.applySetting();
 	}
 	
 	public void btnReset_Click() {
-		
+		handler.resetSetting();
+	}
+	
+	public static void main (String[] args) {
+		new AdminPage();
 	}
 	
 }
