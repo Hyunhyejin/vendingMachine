@@ -1,3 +1,5 @@
+//잔돈 설정 필요함
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -6,7 +8,20 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.*;
 
+import Product.Coffee1;
+import Product.Coffee2;
+import Product.Coffee3;
+import Product.MixCoffee1;
+import Product.MixCoffee2;
+import Product.MixCoffee3;
+import Product.Tea1;
+import Product.Tea2;
+import Product.Tea3;
+
 public class vendingFront extends JFrame implements ActionListener{
+	Controller controller = new Controller();
+	FrontPanel frontpanel = new FrontPanel();
+	
 	//JFrame 생성
 	JFrame frame = new JFrame();
 	
@@ -148,8 +163,9 @@ public class vendingFront extends JFrame implements ActionListener{
 	public void btnMoney_Click() {
 		String strMoney = txtMoney.getText();
 		input = Integer.parseInt(strMoney);
+		
 		// acceptmoney(temp);
-		if (input < 300) {
+		if (input < controller.product.getProductPrice()) {
 			txtError.setText("돈이 부족합니다!");
 			txtError.setForeground(Color.red);
 		} else {
@@ -162,19 +178,67 @@ public class vendingFront extends JFrame implements ActionListener{
 	}
 	
 	public void btnCoffee_Click(int coffeenum) {
-		JOptionPane.showMessageDialog(null, "일반커피 " + coffeenum + "의 제조를 시작합니다.");
-    	makingMsg();
+		switch(coffeenum) {
+		case 1:
+			controller.check(new Coffee1());
+			break;
+		case 2:
+			controller.check(new Coffee2());
+			break;
+		case 3:
+			controller.check(new Coffee3());
+			break;
+		}
+		
+		if (controller.checkChange(input)) {
+			JOptionPane.showMessageDialog(null, "일반커피 " + coffeenum + "의 제조를 시작합니다.");
+			makingMsg();
+		} else {
+			txtError.setText("잔돈이 부족합니다.");
+		}
 	}
 
 
 	public void btnMCoffee_Click(int coffeenum) {
-		JOptionPane.showMessageDialog(null, "믹스커피 " + coffeenum + "의 제조를 시작합니다.");
-    	makingMsg();
+		switch(coffeenum) {
+		case 1:
+			controller.check(new MixCoffee1());
+			break;
+		case 2:
+			controller.check(new MixCoffee2());
+			break;
+		case 3:
+			controller.check(new MixCoffee3());
+			break;
+		}
+		
+		if (controller.checkChange(input)) {
+			JOptionPane.showMessageDialog(null, "믹스커피 " + coffeenum + "의 제조를 시작합니다.");
+			makingMsg();
+		} else {
+			txtError.setText("잔돈이 부족합니다.");
+		}
 	}
 	
 	public void btnNCoffee_Click(int coffeenum) {
-		JOptionPane.showMessageDialog(null, "일반 차  " + coffeenum + "의 제조를 시작합니다.");
-    	makingMsg();
+		switch(coffeenum) {
+		case 1:
+			controller.check(new Tea1());
+			break;
+		case 2:
+			controller.check(new Tea2());
+			break;
+		case 3:
+			controller.check(new Tea3());
+			break;
+		}
+		
+		if (controller.checkChange(input)) {
+			JOptionPane.showMessageDialog(null, "일반차 " + coffeenum + "의 제조를 시작합니다.");
+			makingMsg();
+		} else {
+			txtError.setText("잔돈이 부족합니다.");
+		}
 	}
 	
 	public void btnRefund_Click() {
@@ -213,8 +277,9 @@ public class vendingFront extends JFrame implements ActionListener{
 	}
 	
 	public void makingMsg() {
-		current = input - 300;
+		current = input - controller.product.getProductPrice();
 		this.sleep(2000);
+		controller.startMaking();
 		String temp = String.valueOf(current);
 		btnRefund.setEnabled(false);
 		txtMoney.setText(temp);

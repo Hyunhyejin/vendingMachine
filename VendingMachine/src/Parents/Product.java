@@ -12,7 +12,6 @@ public class Product {
 	protected int productPrice;
 	protected String productName;
 	
-
 	public Product() {
 		
 	}

@@ -25,7 +25,7 @@ public class Controller {
 			public void endProductCallBack(Product product, String result) {
 				TotalMoney -= difference;
 				// TODO Auto-generated method stub
-				System.out.println("완성됬다아아ㅏㅏ");
+				//System.out.println("완성됬다아아ㅏㅏ");
 			}
 		});	
 	}
@@ -46,10 +46,12 @@ public class Controller {
 	}
 
 	//물건 확인 
-	public void check(Product p) {
+	public boolean check(Product p) {
 		this.product = p;
 		name = product.getProductName();
 		price = product.getProductPrice();	
+		
+		return true;
 	}
 
 	//최소금액 확인 메소드
@@ -57,7 +59,7 @@ public class Controller {
 		//수정예정
 		//frontPanel 버튼에 불이 들어오면 된다.
 		if (money >= 300) {
-			System.out.println("확인되었습니다. 버튼에 불이 들어옵니다.");
+			//System.out.println("확인되었습니다. 버튼에 불이 들어옵니다.");
 			fronpanel.getButtonPressed();
 
 			return true;
@@ -66,18 +68,19 @@ public class Controller {
 	}
 
 	//잔돈 확인
-	public void checkChange(int userMoney) {
+	public boolean checkChange(int userMoney) {
 
 		if (userMoney - product.getProductPrice() > getTotalMoney()) {
 			//GUI로 수정 예정
-			System.out.println("잔돈이 부족합니다");
+			//System.out.println("잔돈이 부족합니다");
 			fronpanel.refundMoney();
+			return false;
 		}
 		else {
 			//수정 예정
-			System.out.println("확인되었습니다. 잔돈이 남아있습니다.");
+			//System.out.println("확인되었습니다. 잔돈이 남아있습니다.");
 			difference = userMoney - product.getProductPrice();
-			makingsystem.startMakingSystem(this.product);
+			return true;
 		}
 	}
 
@@ -86,6 +89,10 @@ public class Controller {
 	//에러가 났다고 알려주면 된다
 	public boolean error() {
 		return false;
+	}
+	
+	public void startMaking() {
+		makingsystem.startMakingSystem(this.product);
 	}
 
 
