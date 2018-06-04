@@ -3,8 +3,6 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class AdminPage extends JFrame {
-	// JFrame 持失
-	JFrame frame = new JFrame();
 	
 	// 五昔 JPanel 持失
 	JPanel panel = new JPanel();
@@ -28,8 +26,16 @@ public class AdminPage extends JFrame {
 	public AdminPage() {
 		panel.setLayout(new GridLayout(6,2,10,60));
 		panel.add(lblCoffee);		panel.add(stockCoffee);
+		add(panel);
+		
+		setSize(600, 300);
+		setVisible(true);
+		setResizable(false);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
-	
+	public static void main (String[] args) {
+		new AdminPage();
+	}
 	
 }
