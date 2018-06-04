@@ -105,7 +105,7 @@ public class AdminPage extends JFrame implements ActionListener {
 		
 	}
 	
-	public void resetSetting {
+	public void resetSetting() {
 		
 	}
 	
