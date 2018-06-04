@@ -19,12 +19,10 @@ public class MakingSystem implements Runnable {
 	private SugarHolder sugarHolder;
 	private CupStack cupStack;
 	private MixPipe mixPipe;
+
 	
-	private ResultCallBack endProductCallBack;
-	
-	public MakingSystem(ResultCallBack endProductCallBack) {
+	public MakingSystem() {
 		super();
-		this.endProductCallBack = endProductCallBack;
 		
 		waterTank = new WaterTank();
 		coilHeater = new CoilHeater();

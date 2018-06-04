@@ -8,6 +8,8 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.*;
 
+import Money.CoinSlot;
+import Money.NoteSlot;
 import Parents.ResultCallBack;
 import Product.Coffee1;
 import Product.Coffee2;
@@ -22,7 +24,8 @@ import Util.ResultEventHandler;
 
 public class vendingFront extends JFrame implements ActionListener, ResultCallBack{
 	Controller controller = new Controller();
-	FrontPanel frontpanel = new FrontPanel();
+	CoinSlot coinslot = new CoinSlot();
+	NoteSlot noteslot = new NoteSlot();
 
 	//JFrame 생성
 	JFrame frame = new JFrame();
@@ -66,8 +69,6 @@ public class vendingFront extends JFrame implements ActionListener, ResultCallBa
 
 	// 사용자 투입 금액 세팅
 	// input: 사용자가 초기 투입한 금액
-	// current: 자판기 내에서 사용되며 갱신되는 금액
-	int current;
 
 	public vendingFront(){
 		super("vending machine"); 
@@ -136,21 +137,15 @@ public class vendingFront extends JFrame implements ActionListener, ResultCallBa
 	public void resultCallBack(String result, String msg) {
 		// TODO Auto-generated method stub
 		if (result.equals("success")) {
-
-			System.out.println("Test");
-			String temp = String.valueOf(current);
+			String temp = String.valueOf(controller.giveChange());
 			btnRefund.setEnabled(false);
-			//txtMoney.setText(temp);
-			//txtError.setText("");
 			txtDispenser.setText("제조 완료. 디스펜서에서 음료를 가져가세요.");
-			if (current > 0) {
-				JOptionPane.showMessageDialog(null, "잔돈 " + current + "원을 반환합니다.");
-				// 잔돈 반환 메소드 호출
-				//txtMoney.setText("");
-				//txtMoney.setEditable(true);
+			if (controller.giveChange() > 0) {
+				JOptionPane.showMessageDialog(null, "잔돈 " + controller.giveChange() + "원을 반환합니다.");
+				coinslot.out(controller.giveChange());
 			}
 			offBtn();
-			frontpanel.init();
+			controller.init();
 			txtInput.setText("");
 		} else {
 			txtError.setText(msg);
@@ -207,6 +202,7 @@ public class vendingFront extends JFrame implements ActionListener, ResultCallBa
 	public void btn100_Click() {
 
 		controller.acceptMoney(100);
+		coinslot.accept(100);
 
 		String t = String.valueOf(controller.getMoney());
 		txtInput.setText(t);
@@ -224,8 +220,8 @@ public class vendingFront extends JFrame implements ActionListener, ResultCallBa
 	}
 
 	public void btn500_Click() {
-
 		controller.acceptMoney(500);
+		coinslot.accept(500);
 
 		String t = String.valueOf(controller.getMoney());
 		txtInput.setText(t);
@@ -244,6 +240,7 @@ public class vendingFront extends JFrame implements ActionListener, ResultCallBa
 	public void btn1000_Click() {
 
 		controller.acceptMoney(1000);
+		noteslot.accept(1000);
 
 		String t = String.valueOf(controller.getMoney());
 		txtInput.setText(t);
@@ -325,9 +322,10 @@ public class vendingFront extends JFrame implements ActionListener, ResultCallBa
 
 	public void btnRefund_Click() {
 		JOptionPane.showMessageDialog(null, "환불을 진행합니다.");
-		frontpanel.refundMoney();
+		//frontpanel.refundMoney();
 		txtInput.setText("");
 		txtError.setText("환불 완료");
+		coinslot.out(controller.getMoney());
 		txtError.setForeground(Color.blue);
 		btnRefund.setEnabled(false);
 		//atxtMoney.setEditable(true);
@@ -374,10 +372,8 @@ public class vendingFront extends JFrame implements ActionListener, ResultCallBa
 	}
 
 	public void makingMsg() {
-		current = controller.getMoney() - controller.product.getProductPrice();
 		this.sleep(2000);
 		controller.startMaking();
-
 	}
 
 
