@@ -6,7 +6,7 @@ import Product.Coffee1;
 
 //얍
 
-public class Controller {
+public class Controller implements EndProductCallBack{
 	private int TotalMoney = 2000;
 	//TotalMoney에 빼둘 돈 (TotalMoney - (userMoney - productMoney)
 	int difference;
@@ -17,18 +17,19 @@ public class Controller {
 	MakingSystem makingsystem;
 	Product product;
 	FrontPanel fronpanel = new FrontPanel();
-
+	String result;
+	
 	public Controller() {
-		makingsystem = new MakingSystem(new EndProductCallBack() {
-
-			@Override
-			public void endProductCallBack(Product product, String result) {
-				TotalMoney -= difference;
-				// TODO Auto-generated method stub
-				//System.out.println("완성됬다아아ㅏㅏ");
-			}
-		});	
+		makingsystem = new MakingSystem(this);
 	}
+	
+	
+	@Override
+	public void endProductCallBack(Product product, String result) {
+		// TODO Auto-generated method stub
+		this.result = result;
+	}
+
 
 	//물건 가격 메소드
 	public int getPrice() {
