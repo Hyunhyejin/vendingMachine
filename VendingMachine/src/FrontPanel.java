@@ -7,17 +7,6 @@ public class FrontPanel {
 		usermoney += money;
 	}
 	
-	public int getMoney() {
-		return usermoney;
-	}
-	
-	//버튼 누르기
-	//GUI에서 버튼 클릭으로 수정 예정
-	public void getButtonPressed() {
-		//GUI에서 수정 예정
-		//System.out.println("버튼을 누릅니다");
-	}
-	
 	//GUI 수정 예정
 	//고객에게 잔돈 돌려주기
 	public void giveChange(int price) {

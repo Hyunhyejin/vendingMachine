@@ -8,7 +8,7 @@ public class Tea1 extends Product {
 		// TODO Auto-generated constructor stub
 		this.amountOfWater = 20;
 		this.productId = 1;
-		this.productPrice = 400;
+		this.productPrice = 300;
 		this.productName = "Â÷1";
 		
 	}

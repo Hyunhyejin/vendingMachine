@@ -23,10 +23,10 @@ import Util.ResultEventHandler;
 public class vendingFront extends JFrame implements ActionListener, ResultCallBack{
 	Controller controller = new Controller();
 	FrontPanel frontpanel = new FrontPanel();
-	
+
 	//JFrame 생성
 	JFrame frame = new JFrame();
-	
+
 	// 최상단 패널 (money slot) 세팅
 	JPanel upper = new JPanel();
 	JButton btn100 = new JButton("+ 100");
@@ -35,7 +35,7 @@ public class vendingFront extends JFrame implements ActionListener, ResultCallBa
 	JLabel lblInput = new JLabel("투입금액");
 	JTextField txtInput = new JTextField(20);
 	JTextField txtError = new JTextField(20);
-	
+
 	// 서쪽 패널 (커피 버튼) 세팅
 	JPanel west = new JPanel();
 	JButton btnCoffee1 = new JButton("커피 1");
@@ -47,34 +47,34 @@ public class vendingFront extends JFrame implements ActionListener, ResultCallBa
 	JButton btnNCoffee1 = new JButton("일반차 1");
 	JButton btnNCoffee2 = new JButton("일반차 2");
 	JButton btnNCoffee3 = new JButton("일반차 3");
-		
+
 	// 중앙 패널 (자판기 상태) 세팅
 	JPanel center = new JPanel();
 	JTextField txtWater = new JTextField(20);
 	JTextField txtTemperature = new JTextField(20);
 	JTextField txtMaking = new JTextField(20);
-	
+
 	// 동쪽 패널 (재고 현황) 세팅
 	JPanel east = new JPanel();
 	JButton btnSoldOut = new JButton("재 고 없 음");
 	JButton btnRefund = new JButton("반 환");
-	
+
 	// 남쪽 패널 (디스펜서) 세팅
 	JPanel south = new JPanel();
 	JTextField txtDispenser = new JTextField(20);
 	JTextField txtChange = new JTextField(20);
-	
+
 	// 사용자 투입 금액 세팅
 	// input: 사용자가 초기 투입한 금액
 	// current: 자판기 내에서 사용되며 갱신되는 금액
-	int input, current;
-	
+	int current;
+
 	public vendingFront(){
 		super("vending machine"); 
-		
+
 		// JFrame placing
 		frame.setLayout(new BorderLayout(30, 30));
-		
+
 		// upper panel placing
 		upper.add(btn100);
 		upper.add(btn500);
@@ -84,7 +84,7 @@ public class vendingFront extends JFrame implements ActionListener, ResultCallBa
 		upper.add(txtError); txtError.setEditable(false);
 		upper.setLayout(new GridLayout(1,6,30,10));
 		frame.add("North", upper);
-		
+
 		// west panel placing
 		west.add(btnCoffee1); btnCoffee1.setEnabled(false);
 		west.add(btnCoffee2); btnCoffee2.setEnabled(false);
@@ -97,14 +97,14 @@ public class vendingFront extends JFrame implements ActionListener, ResultCallBa
 		west.add(btnNCoffee3); btnNCoffee3.setEnabled(false);
 		west.setLayout(new GridLayout(3, 3, 20, 40));
 		frame.add("West", west);
-		
+
 		// center panel placing
 		center.add(txtTemperature);
 		txtTemperature.setEditable(false);
 		center.add(txtWater);
 		txtWater.setEditable(false);
 		frame.add("Center", center);
-		
+
 		// east panel placing
 		east.add(btnSoldOut);
 		btnSoldOut.setEnabled(false);
@@ -112,7 +112,7 @@ public class vendingFront extends JFrame implements ActionListener, ResultCallBa
 		btnRefund.setEnabled(false);
 		east.setLayout(new GridLayout(2, 1, 20, 40));
 		frame.add("East", east);
-		
+
 		// south panel placing
 		south.add(txtDispenser);
 		south.add(txtChange);
@@ -120,23 +120,23 @@ public class vendingFront extends JFrame implements ActionListener, ResultCallBa
 		txtChange.setEditable(false);
 		south.setLayout(new GridLayout(1,2,40,60));
 		frame.add("South", south);
-		
+
 		frame.setSize(800, 500);
 		frame.setVisible(true);
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+
 		eventHandler();
 		ResultEventHandler.addEventListner(this);
 	}
-	
-	
-	
+
+
+
 	@Override
 	public void resultCallBack(String result, String msg) {
 		// TODO Auto-generated method stub
 		if (result.equals("success")) {
-			
+
 			System.out.println("Test");
 			String temp = String.valueOf(current);
 			btnRefund.setEnabled(false);
@@ -167,7 +167,7 @@ public class vendingFront extends JFrame implements ActionListener, ResultCallBa
 				System.exit(0);	
 			}	
 		});
-		
+
 		btn100.addActionListener(this);
 		btn500.addActionListener(this);
 		btn1000.addActionListener(this);
@@ -181,13 +181,13 @@ public class vendingFront extends JFrame implements ActionListener, ResultCallBa
 		btnNCoffee2.addActionListener(this);
 		btnNCoffee3.addActionListener(this);
 		btnRefund.addActionListener(this);
-		
+
 	}
-	
+
 	@Override
 	public void actionPerformed(ActionEvent ae) {
 		Object obj = ae.getSource();
-		
+
 		if(obj==btn100) btn100_Click();
 		if(obj==btn500) btn500_Click();
 		if(obj==btn1000) btn1000_Click();
@@ -201,64 +201,64 @@ public class vendingFront extends JFrame implements ActionListener, ResultCallBa
 		if(obj==btnNCoffee2) btnNCoffee_Click(2);
 		if(obj==btnNCoffee3) btnNCoffee_Click(3);
 		if(obj==btnRefund) btnRefund_Click();
-		
+
 	}
-	
+
 	public void btn100_Click() {
-		
-		input += 100;
-		
-		String t = String.valueOf(input);
+
+		controller.acceptMoney(100);
+
+		String t = String.valueOf(controller.getMoney());
 		txtInput.setText(t);
-		
+
 		// input < controller.product.getProductPrice()
-		if (input < 300) {
+		if (!controller.checkMoney()) {
 			txtError.setText("돈이 부족합니다!");
 			txtError.setForeground(Color.red);
 		} else {
 			txtError.setText("커피 종류를 선택하세요.");
 			txtError.setForeground(Color.blue);
 			btnRefund.setEnabled(true);
-			lightBtn();
+			lightBtn(controller.getMoney());
 		}
 	}
-	
+
 	public void btn500_Click() {
-		
-		input += 500;
 
-		String t = String.valueOf(input);
+		controller.acceptMoney(500);
+
+		String t = String.valueOf(controller.getMoney());
 		txtInput.setText(t);
-		
-		if (input < 300) {
+
+		if (!controller.checkMoney()) {
 			txtError.setText("돈이 부족합니다!");
 			txtError.setForeground(Color.red);
 		} else {
 			txtError.setText("커피 종류를 선택하세요.");
 			txtError.setForeground(Color.blue);
 			btnRefund.setEnabled(true);
-			lightBtn();
+			lightBtn(controller.getMoney());
 		}
 	}
-	
+
 	public void btn1000_Click() {
-		
-		input += 1000;
 
-		String t = String.valueOf(input);
+		controller.acceptMoney(1000);
+
+		String t = String.valueOf(controller.getMoney());
 		txtInput.setText(t);
-		
-		if (input < 300) {
+
+		if (!controller.checkMoney()) {
 			txtError.setText("돈이 부족합니다!");
 			txtError.setForeground(Color.red);
 		} else {
 			txtError.setText("커피 종류를 선택하세요.");
 			txtError.setForeground(Color.blue);
 			btnRefund.setEnabled(true);
-			lightBtn();
+			lightBtn(controller.getMoney());
 		}
 	}
-	
+
 	public void btnCoffee_Click(int coffeenum) {
 		switch(coffeenum) {
 		case 1:
@@ -271,8 +271,8 @@ public class vendingFront extends JFrame implements ActionListener, ResultCallBa
 			controller.check(new Coffee3());
 			break;
 		}
-		
-		if (controller.checkChange(input)) {
+
+		if (controller.checkChange(controller.getMoney())) {
 			JOptionPane.showMessageDialog(null, "일반커피 " + coffeenum + "의 제조를 시작합니다.");
 			makingMsg();
 		} else {
@@ -293,15 +293,15 @@ public class vendingFront extends JFrame implements ActionListener, ResultCallBa
 			controller.check(new MixCoffee3());
 			break;
 		}
-		
-		if (controller.checkChange(input)) {
+
+		if (controller.checkChange(controller.getMoney())) {
 			JOptionPane.showMessageDialog(null, "믹스커피 " + coffeenum + "의 제조를 시작합니다.");
 			makingMsg();
 		} else {
 			txtError.setText("잔돈이 부족합니다.");
 		}
 	}
-	
+
 	public void btnNCoffee_Click(int coffeenum) {
 		switch(coffeenum) {
 		case 1:
@@ -314,15 +314,15 @@ public class vendingFront extends JFrame implements ActionListener, ResultCallBa
 			controller.check(new Tea3());
 			break;
 		}
-		
-		if (controller.checkChange(input)) {
+
+		if (controller.checkChange(controller.getMoney())) {
 			JOptionPane.showMessageDialog(null, "일반차 " + coffeenum + "의 제조를 시작합니다.");
 			makingMsg();
 		} else {
 			txtError.setText("잔돈이 부족합니다.");
 		}
 	}
-	
+
 	public void btnRefund_Click() {
 		JOptionPane.showMessageDialog(null, "환불을 진행합니다.");
 		frontpanel.refundMoney();
@@ -333,19 +333,34 @@ public class vendingFront extends JFrame implements ActionListener, ResultCallBa
 		//atxtMoney.setEditable(true);
 		offBtn();
 	}
-	
-	public void lightBtn() {
-		btnCoffee1.setEnabled(true);
-		btnCoffee2.setEnabled(true);
-		btnCoffee3.setEnabled(true);
-		btnMCoffee1.setEnabled(true);
-		btnMCoffee2.setEnabled(true);
-		btnMCoffee3.setEnabled(true);
-		btnNCoffee1.setEnabled(true);
-		btnNCoffee2.setEnabled(true);
-		btnNCoffee3.setEnabled(true);
+
+	public void lightBtn(int money) {
+
+		if (money >= 500) {
+			btnCoffee1.setEnabled(true);
+			btnCoffee2.setEnabled(true);
+			btnCoffee3.setEnabled(true);
+			btnMCoffee1.setEnabled(true);
+			btnMCoffee2.setEnabled(true);
+			btnMCoffee3.setEnabled(true);
+			btnNCoffee1.setEnabled(true);
+			btnNCoffee2.setEnabled(true);
+			btnNCoffee3.setEnabled(true);
+		} else if (money >= 400) {
+			btnCoffee1.setEnabled(true);
+			btnCoffee2.setEnabled(true);
+			btnMCoffee1.setEnabled(true);
+			btnMCoffee2.setEnabled(true);
+			btnNCoffee1.setEnabled(true);
+			btnNCoffee2.setEnabled(true);
+			
+		} else {
+			btnCoffee1.setEnabled(true);
+			btnMCoffee1.setEnabled(true);
+			btnNCoffee1.setEnabled(true);
+		}
 	}
-	
+
 	public void offBtn() {
 		btnCoffee1.setEnabled(false);
 		btnCoffee2.setEnabled(false);
@@ -357,15 +372,15 @@ public class vendingFront extends JFrame implements ActionListener, ResultCallBa
 		btnNCoffee2.setEnabled(false);
 		btnNCoffee3.setEnabled(false);
 	}
-	
+
 	public void makingMsg() {
-		current = input - controller.product.getProductPrice();
+		current = controller.getMoney() - controller.product.getProductPrice();
 		this.sleep(2000);
 		controller.startMaking();
-	
+
 	}
 
-	
+
 	public void sleep (int time) {
 		try {
 			Thread.sleep(time);

@@ -7,6 +7,7 @@ import Product.Coffee1;
 //얍
 
 public class Controller {
+	private int usermoney = 0;
 	private int TotalMoney = 2000;
 	//TotalMoney에 빼둘 돈 (TotalMoney - (userMoney - productMoney)
 	int difference;
@@ -56,13 +57,10 @@ public class Controller {
 	}
 
 	//최소금액 확인 메소드
-	public boolean checkMoney(int money) {
+	public boolean checkMoney() {
 		//수정예정
 		//frontPanel 버튼에 불이 들어오면 된다.
-		if (money >= 300) {
-			//System.out.println("확인되었습니다. 버튼에 불이 들어옵니다.");
-			fronpanel.getButtonPressed();
-
+		if (this.usermoney >= 300) {
 			return true;
 		}
 		return false; 
@@ -82,7 +80,7 @@ public class Controller {
 			//System.out.println("확인되었습니다. 잔돈이 남아있습니다.");
 			difference = userMoney - product.getProductPrice();
 			return true;
-		}
+		} 
 	}
 
 	//추가 예정
@@ -95,4 +93,46 @@ public class Controller {
 	public void startMaking() {
 		makingsystem.startMakingSystem(this.product);
 	}
+	
+	//frontPanel
+	
+
+	//돈 받기
+	public void acceptMoney(int money) {
+		usermoney += money;
+	}
+	
+	//GUI 수정 예정
+	//고객에게 잔돈 돌려주기
+	public void giveChange(int price) {
+		int change = usermoney - price;
+		//System.out.println("잔돈 " + change + "원 돌려드립니다." );		
+	}
+	
+	//GUI 수정 예정
+	//고객에게 제품 주기
+	public void giveProduct(String product) {
+		//System.out.println(product + "가 완성되었습니다. 뜨거우므로 조심해주세요.");
+	}
+	
+	//making system이 추가되면 수정 예정
+	//에러 메세지
+	//다른 곳에서 실패한 걸, frontPanel 에서 보여주는 용도
+	//error 메소드와 연관
+	public void refundMoney() {
+		//GUI로 수정 예정
+		//System.out.println("이러한 이유로 실패하였습니다.");
+		//System.out.println("돈을 반환합니다.");
+		//System.exit(0);
+	}
+	
+	void init() {
+		this.usermoney =0;
+	}
+	
+	public int getMoney() {
+		return usermoney;
+	}
+	
+	
 }
