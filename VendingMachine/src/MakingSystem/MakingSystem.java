@@ -1,8 +1,10 @@
 package MakingSystem;
 
+import java.beans.EventHandler;
 import java.util.Scanner;
 
-import Parents.EndProductCallBack;
+import Parents.ResultCallBack;
+import Util.ResultEventHandler;
 import Parents.Product;
 
 public class MakingSystem implements Runnable {
@@ -18,9 +20,9 @@ public class MakingSystem implements Runnable {
 	private CupStack cupStack;
 	private MixPipe mixPipe;
 	
-	private EndProductCallBack endProductCallBack;
+	private ResultCallBack endProductCallBack;
 	
-	public MakingSystem(EndProductCallBack endProductCallBack) {
+	public MakingSystem(ResultCallBack endProductCallBack) {
 		super();
 		this.endProductCallBack = endProductCallBack;
 		
@@ -59,6 +61,7 @@ public class MakingSystem implements Runnable {
 			//물탱크에 충분한 물이 있는지 확인.
 			if(!waterTank.checkProperAmountOfWater()) {
 				System.out.println(waterTank.sendError());
+				ResultEventHandler.callEvent(MakingSystem.class, "fail", "물이 부족합니다");
 				state = false;
 				break;
 			}
@@ -74,7 +77,8 @@ public class MakingSystem implements Runnable {
 					System.out.println("물을 다 데웠다. 물의 온도는 :" + waterTank.getTempuratureOfWater());
 				}else {
 					state = false;
-					System.out.println("물 데우기 실패 !" + coilHeater.sendError());
+					//System.out.println("물 데우기 실패 !" + coilHeater.sendError());
+					ResultEventHandler.callEvent(MakingSystem.class, "fail", "물 데우기 실패!");
 					break;
 				}
 			}
@@ -84,6 +88,7 @@ public class MakingSystem implements Runnable {
 			
 			if(cup == null) {
 				System.out.println("컵이 없습니다. 관리자에게 문의 해 주세요.");
+				ResultEventHandler.callEvent(MakingSystem.class, "fail", "컵이 없습니다. 관리자에게 문의 해 주세요.");
 				state = false;
 				break;
 			}
@@ -91,20 +96,22 @@ public class MakingSystem implements Runnable {
 		
 			//컵에 가루넣기 
 			if((coffeeHolder.getCurAmountOfPowder() < product.getAmountOfCoffeePowder())) {
-				System.out.println("커피 가루가 없습니다. 관리자에게 문의해 주세요.");
-				System.out.println("남은 가루의 양 : " + coffeeHolder.getCurAmountOfPowder());
+				//System.out.println("커피 가루가 없습니다. 관리자에게 문의해 주세요.");
+				ResultEventHandler.callEvent(MakingSystem.class, "fail", "커피 가루가 없습니다. 관리자에게 문의해 주세요.");
 				state = false;
 				break;
 			}
 			
 			if(creamHolder.getCurAmountOfPowder() < product.getAmountOfCreamPowder()) {
-				System.out.println("크림 가루가 없습니다. 관리자에게 문의해 주세요.");
+				ResultEventHandler.callEvent(MakingSystem.class, "fail", "크림 가루가 없습니다. 관리자에게 문의해 주세요.");
+				//System.out.println("크림 가루가 없습니다. 관리자에게 문의해 주세요.");
 				state = false;
 				break;
 			}
 			
 			if(sugarHolder.getCurAmountOfPowder() < product.getAmountOfSugarPowder()) {
-				System.out.println("설탕가루가 없습니다. 관리자에게 문의해 주세요.");
+				//System.out.println("설탕가루가 없습니다. 관리자에게 문의해 주세요.");
+				ResultEventHandler.callEvent(MakingSystem.class, "fail", "설탕 가루가 없습니다. 관리자에게 문의해 주세요.");
 				state = false;
 				break;
 			}
@@ -119,7 +126,10 @@ public class MakingSystem implements Runnable {
 			cup.setProductInCup(p);
 			
 			//콜백함수로 제품제조가 완료 되었음을 알리기 
-			this.endProductCallBack.endProductCallBack(this.product,"success");
+			//this.endProductCallBack.resultCallBack(this.product,"success");
+			
+			ResultEventHandler.callEvent(MakingSystem.class, "success", "Tt");
+			
 			state = false;
 			break;
 		}

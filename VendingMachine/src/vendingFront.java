@@ -8,6 +8,7 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.*;
 
+import Parents.ResultCallBack;
 import Product.Coffee1;
 import Product.Coffee2;
 import Product.Coffee3;
@@ -17,8 +18,9 @@ import Product.MixCoffee3;
 import Product.Tea1;
 import Product.Tea2;
 import Product.Tea3;
+import Util.ResultEventHandler;
 
-public class vendingFront extends JFrame implements ActionListener{
+public class vendingFront extends JFrame implements ActionListener, ResultCallBack{
 	Controller controller = new Controller();
 	FrontPanel frontpanel = new FrontPanel();
 	
@@ -118,8 +120,36 @@ public class vendingFront extends JFrame implements ActionListener{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		eventHandler();
+		ResultEventHandler.addEventListner(this);
 	}
 	
+	
+	
+	@Override
+	public void resultCallBack(String result, String msg) {
+		// TODO Auto-generated method stub
+		if (result.equals("success")) {
+			
+			System.out.println("Test");
+			String temp = String.valueOf(current);
+			btnRefund.setEnabled(false);
+			txtMoney.setText(temp);
+			//txtError.setText("");
+			txtDispenser.setText("제조 완료. 디스펜서에서 음료를 가져가세요.");
+			if (current > 0) {
+				JOptionPane.showMessageDialog(null, "잔돈 " + current + "원을 반환합니다.");
+				// 잔돈 반환 메소드 호출
+				txtMoney.setText("");
+				txtMoney.setEditable(true);
+			}
+			offBtn();
+		} else {
+			txtError.setText(msg);
+		}
+	}
+
+
+
 	public void eventHandler() {
 
 		this.addWindowListener(new WindowAdapter() {
@@ -165,7 +195,7 @@ public class vendingFront extends JFrame implements ActionListener{
 		input = Integer.parseInt(strMoney);
 		
 		// acceptmoney(temp);
-		if (input < controller.product.getProductPrice()) {
+		if (input < 300) {
 			txtError.setText("돈이 부족합니다!");
 			txtError.setForeground(Color.red);
 		} else {
@@ -280,18 +310,7 @@ public class vendingFront extends JFrame implements ActionListener{
 		current = input - controller.product.getProductPrice();
 		this.sleep(2000);
 		controller.startMaking();
-		String temp = String.valueOf(current);
-		btnRefund.setEnabled(false);
-		txtMoney.setText(temp);
-		txtError.setText("");
-		txtDispenser.setText("제조 완료. 디스펜서에서 음료를 가져가세요.");
-		if (current > 0) {
-			JOptionPane.showMessageDialog(null, "잔돈 " + current + "원을 반환합니다.");
-			// 잔돈 반환 메소드 호출
-			txtMoney.setText("");
-			txtMoney.setEditable(true);
-		}
-		offBtn();
+	
 	}
 
 	

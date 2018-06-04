@@ -1,6 +1,6 @@
 
 import MakingSystem.MakingSystem;
-import Parents.EndProductCallBack;
+import Parents.ResultCallBack;
 import Parents.Product;
 import Product.Coffee1;
 
@@ -19,14 +19,15 @@ public class Controller {
 	FrontPanel fronpanel = new FrontPanel();
 
 	public Controller() {
-		makingsystem = new MakingSystem(new EndProductCallBack() {
+		makingsystem = new MakingSystem(new ResultCallBack() {
 
 			@Override
-			public void endProductCallBack(Product product, String result) {
-				TotalMoney -= difference;
+			public void resultCallBack(String result, String msg) {
 				// TODO Auto-generated method stub
-				//System.out.println("완성됬다아아ㅏㅏ");
+				
 			}
+
+	
 		});	
 	}
 
@@ -94,7 +95,4 @@ public class Controller {
 	public void startMaking() {
 		makingsystem.startMakingSystem(this.product);
 	}
-
-
-
 }
