@@ -8,6 +8,8 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.*;
 
+import MakingSystem.StockManager;
+import MakingSystem.WaterTank;
 import Money.CoinSlot;
 import Money.NoteSlot;
 import Parents.ResultCallBack;
@@ -293,6 +295,7 @@ public class vendingFront extends JFrame implements ActionListener, ResultCallBa
 
 		if (controller.checkChange(controller.getMoney())) {
 			JOptionPane.showMessageDialog(null, "믹스커피 " + coffeenum + "의 제조를 시작합니다.");
+			System.out.println();
 			makingMsg();
 		} else {
 			txtError.setText("잔돈이 부족합니다.");

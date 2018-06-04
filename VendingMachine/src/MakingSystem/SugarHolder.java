@@ -4,7 +4,7 @@ import Parents.Holder;
 public class SugarHolder extends Holder {
 	private final int POWDER_TYPE = 0;	
 	
-	private int curAmountOfPowder = 500;	//현재 홀더에 채워져 있는 가루의 양.
+	private static int curAmountOfPowder = 500;	//현재 홀더에 채워져 있는 가루의 양.
 
 	
 	
@@ -14,8 +14,12 @@ public class SugarHolder extends Holder {
 
 
 
-	public int getCurAmountOfPowder() {
+	public static int getCurAmountOfPowder() {
 		return curAmountOfPowder;
+	}
+	
+	public static void setCurAmountOfPowder(int curAmountOfPowder) {
+		SugarHolder.curAmountOfPowder = curAmountOfPowder;
 	}
 
 
