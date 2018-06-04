@@ -5,8 +5,6 @@ import javax.swing.border.*;
 
 public class AdminPage extends JFrame implements ActionListener {
 	
-	AdminHandler handler = new AdminHandler();
-	
 	// JPanel 생성
 	JPanel west = new JPanel();
 	JPanel east = new JPanel();
@@ -36,6 +34,7 @@ public class AdminPage extends JFrame implements ActionListener {
 	JButton btnReset = new JButton("초기화");
 	
 	public AdminPage() {
+		
 		north.add(lblTitle);
 		lblTitle.setFont(new Font(Font.SANS_SERIF, Font.PLAIN|Font.BOLD, 16));
 		lblTitle.setBorder(new EmptyBorder(10, 10, 10, 10));
@@ -92,22 +91,22 @@ public class AdminPage extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent a) {
 		Object obj = a.getSource();
 		
-		if (obj == btnExit) btnExit_Click();
-		if (obj == btnApply) btnApply_Click();
-		if (obj == btnReset) btnReset_Click();
+		if (obj == btnExit) exitWindow();
+		if (obj == btnApply) applySetting();
+		if (obj == btnReset) resetSetting();
 		
 	}
 	
-	public void btnExit_Click() {
-		handler.exitPage();
+	public void exitWindow() {
+		
 	}
 	
-	public void btnApply_Click() {
-		handler.applySetting();
+	public void applySetting() {
+		
 	}
 	
-	public void btnReset_Click() {
-		handler.resetSetting();
+	public void resetSetting {
+		
 	}
 	
 	public static void main (String[] args) {
