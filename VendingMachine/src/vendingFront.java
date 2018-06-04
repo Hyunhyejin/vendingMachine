@@ -165,7 +165,7 @@ public class vendingFront extends JFrame implements ActionListener{
 		input = Integer.parseInt(strMoney);
 		
 		// acceptmoney(temp);
-		if (input < 300) {
+		if (input < controller.product.getProductPrice()) {
 			txtError.setText("돈이 부족합니다!");
 			txtError.setForeground(Color.red);
 		} else {
@@ -277,7 +277,7 @@ public class vendingFront extends JFrame implements ActionListener{
 	}
 	
 	public void makingMsg() {
-		current = input - 300;
+		current = input - controller.product.getProductPrice();
 		this.sleep(2000);
 		controller.startMaking();
 		String temp = String.valueOf(current);
