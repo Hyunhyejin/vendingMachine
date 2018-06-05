@@ -13,7 +13,6 @@ public class Coffee1 extends Product {
 		this.productId = 1;
 		this.productPrice = 300;
 		this.productName = "Ä¿ÇÇ1";
-		
 	}
 
 }

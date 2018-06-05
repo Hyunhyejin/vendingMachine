@@ -9,22 +9,20 @@ import java.util.Stack;
 import Parents.Product;
 import Parents.VendingMachineStack;
 
-public class CupStack implements VendingMachineStack {
+public class CupStack {
 
-	private final int MAX_COUNT_OF_CUP = 100;
-	private Queue<Cup> cups;
+	private final static int MAX_COUNT_OF_CUP = 100;
+	private static Queue<Cup> cups =  new LinkedList<Cup>();
 
 	public CupStack() {
 		super();
-		cups = new LinkedList<Cup>();
 		for(int i =0; i<100; i++) {
 			cups.offer(new Cup());
 		}
 		
 	}
 
-	@Override
-	public void put(Object ins) {
+	public static void put(Object ins) {
 		// TODO Auto-generated method stub
 		if(cups.size() < MAX_COUNT_OF_CUP) {
 			cups.offer((Cup)ins);
@@ -33,7 +31,6 @@ public class CupStack implements VendingMachineStack {
 		}
 	}
 
-	@Override
 	public Object get() {
 		// TODO Auto-generated method stub
 		
@@ -44,7 +41,11 @@ public class CupStack implements VendingMachineStack {
 		
 		return null;
 	}
-
+	
+	public static int getSize() {
+		return cups.size();
+	}
+	
 }
 
 class Cup{
