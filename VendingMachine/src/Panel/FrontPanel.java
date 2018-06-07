@@ -307,7 +307,7 @@ public class FrontPanel extends JFrame implements ActionListener, ResultCallBack
 			JOptionPane.showMessageDialog(null, "일반커피 " + coffeenum + "의 제조를 시작합니다.");
 			makingMsg();
 		} else {
-			txtError.setText("잔돈이 부족합니다.");
+			txtError.setText("잔돈이 부족합니다. 관리자에게 문의");
 		}
 	}
 
@@ -329,7 +329,7 @@ public class FrontPanel extends JFrame implements ActionListener, ResultCallBack
 			System.out.println();
 			makingMsg();
 		} else {
-			txtError.setText("잔돈이 부족합니다.");
+			txtError.setText("잔돈이 부족합니다. 관리자에게 문의");
 		}
 	}
 
@@ -350,7 +350,7 @@ public class FrontPanel extends JFrame implements ActionListener, ResultCallBack
 			JOptionPane.showMessageDialog(null, "일반차 " + coffeenum + "의 제조를 시작합니다.");
 			makingMsg();
 		} else {
-			txtError.setText("잔돈이 부족합니다.");
+			txtError.setText("잔돈이 부족합니다. 관리자에게 문의");
 		}
 	}
 
@@ -361,6 +361,7 @@ public class FrontPanel extends JFrame implements ActionListener, ResultCallBack
 		coinslot.out(controller.refundMoney());
 		txtError.setForeground(Color.blue);
 		btnRefund.setEnabled(false);
+		btnSoldOut.setEnabled(false);
 		offBtn();
 	}
 

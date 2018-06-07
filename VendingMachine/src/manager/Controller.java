@@ -57,6 +57,11 @@ public class Controller {
 	//µ∑ πﬁ±‚
 	public void acceptMoney(int money) {
 		usermoney += money;
+		if(money == 1000){
+			noteStack.addMoney(money);
+		}else {
+			coinStack.addMoney(money);
+		}
 	}
 	
 	//¿‹µ∑ π›»Ø

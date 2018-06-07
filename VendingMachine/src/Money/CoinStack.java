@@ -3,8 +3,8 @@ package Money;
 import Parents.MoneyStack;
 
 public class CoinStack extends MoneyStack{
-	public  int account_100 = 10;
-	public  int account_500 = 10;
+	public  int account_100 = 1000;
+	public  int account_500 = 1000;
 	
 	
 	public  void outCoinMoney(int money) {

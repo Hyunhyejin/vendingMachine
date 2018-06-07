@@ -17,8 +17,7 @@ package MakingSystem;
 
 
 	public boolean checkProperTempuratureOfWater(int curTempOfWater) {
-		boolean isHot = curTempOfWater > 70? true: false;
-		
+		boolean isHot = curTempOfWater > 70? true: false;	
 		return isHot;
 	}
 	

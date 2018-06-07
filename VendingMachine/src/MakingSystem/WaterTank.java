@@ -4,7 +4,7 @@ package MakingSystem;
 public class WaterTank{
 	
 	private int tempuratureOfWater;	//현재 물탱크에 있는 물의 온도
-	private static int curAmountOfWater =2000;	//현재 뭍탱크에 있는 물의 양
+	private static int curAmountOfWater =1;	//현재 뭍탱크에 있는 물의 양
 	public static final int MIN_CAPACITY = 70;	//물탱크의 최소 용량 = 70mL
 	public static final int MAX_CAPACITY = 2700;	//물탱크의 최대 용량 = 2700ml = 2.7L
 

@@ -7,6 +7,7 @@ public class MixPipe {
 	int curAmountOfCoffee;	//현재 믹스 파이프에 있는 커피의 양
 	int curAmountOfCream;	//현재 믹스 파이프에 있는 크림의 양
 	int curAmountOfSugar;	//현태 믹스 파이프에 있는 설탕의 양
+	int curAmountOfTea;
 	
 	public int getCurAmountOfWater() {
 		return curAmountOfWater;
@@ -31,6 +32,12 @@ public class MixPipe {
 	}
 	public void setCurAmountOfSugar(int curAmountOfSugar) {
 		this.curAmountOfSugar = curAmountOfSugar;
+	}
+	public int getCurAmountOfTea() {
+		return curAmountOfTea;
+	}
+	public void setCurAmountOfTea(int curAmountOfTea) {
+		this.curAmountOfTea = curAmountOfTea;
 	}
 	
 	
