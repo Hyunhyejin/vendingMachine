@@ -5,9 +5,7 @@ package MakingSystem;
 	
 	private final int MAX_TEMPURATURE = 90;
 	private final int MIN_TEMPURATURE = 50;
-	
-	private String errorMsg;
-	
+
 	public int getMAX_TEMPURATURE() {
 		return MAX_TEMPURATURE;
 	}
@@ -27,10 +25,6 @@ package MakingSystem;
 
 	public int heatWater() {
 		return MAX_TEMPURATURE;
-	}
-	
-	public String sendError() {
-		return this.errorMsg;
 	}
 
 }

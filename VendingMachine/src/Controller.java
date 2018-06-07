@@ -71,6 +71,10 @@ public class Controller {
 	public Product getProduct() {
 		return product;
 	}
+	
+	public void refundMoney() {
+		usermoney = 0;
+	}
 
 	
 }

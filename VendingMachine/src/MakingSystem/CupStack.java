@@ -11,7 +11,7 @@ import Parents.VendingMachineStack;
 
 public class CupStack {
 
-	private final static int MAX_COUNT_OF_CUP = 100;
+	public final static int MAX_COUNT_OF_CUP = 100;
 	private static Queue<Cup> cups =  new LinkedList<Cup>();
 
 	public CupStack() {

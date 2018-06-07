@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
-		<item value="D:\성신여자대학교\2018학년도\객체지향설계\VendingMachine"/>
 		<item value="D:\성신여자대학교\2018학년도\객체지향설계\VendingMachine\VendingMachine"/>
 	</list>
 </section>

@@ -3,7 +3,6 @@ import Parents.Holder;
 
 public class CreamHolder extends Holder {
 
-	private final int POWDER_TYPE = 2;
 	private static int curAmountOfPowder = 500;	//현재 홀더에 채워져 있는 가루의 양.
 
 	
@@ -12,14 +11,6 @@ public class CreamHolder extends Holder {
 		// TODO Auto-generated constructor stub
 	}
 
-
-
-	public int getPOWDER_TYPE() {
-		return POWDER_TYPE;
-	}
-
-
-
 	public static int getCurAmountOfPowder() {
 		return curAmountOfPowder;
 	}
@@ -27,7 +18,6 @@ public class CreamHolder extends Holder {
 	public static void setCurAmountOfPowder(int curAmountOfPowder) {
 		CreamHolder.curAmountOfPowder = curAmountOfPowder;
 	}
-
 
 
 	@Override
@@ -41,8 +31,5 @@ public class CreamHolder extends Holder {
 			return amount;
 		}
 	}
-	
-	
-
 	
 }

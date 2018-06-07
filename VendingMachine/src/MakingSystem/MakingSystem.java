@@ -63,7 +63,6 @@ public class MakingSystem implements Runnable {
 		while (state) {
 			// 물탱크에 충분한 물이 있는지 확인.
 			if (!waterTank.checkProperAmountOfWater()) {
-				System.out.println(waterTank.sendError());
 				ResultEventHandler.callEvent(MakingSystem.class, "fail", "물이 부족합니다");
 				state = false;
 				break;
