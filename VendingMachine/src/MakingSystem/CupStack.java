@@ -1,17 +1,10 @@
 package MakingSystem;
 
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Stack;
-import Parents.Product;
-
-
 public class CupStack {
 
 	public final static int MAX_COUNT_OF_CUP = 100;
-	private static int curCupCount = 10;
+	private static int curCupCount = 100;
 
 	public CupStack() {
 		super();

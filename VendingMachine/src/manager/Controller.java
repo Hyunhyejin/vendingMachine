@@ -1,9 +1,9 @@
 package manager;
 
 import MakingSystem.MakingSystem;
+import MakingSystem.Product;
 import Money.CoinStack;
 import Money.NoteStack;
-import Parents.Product;
 
 public class Controller {
 	private int usermoney = 0;

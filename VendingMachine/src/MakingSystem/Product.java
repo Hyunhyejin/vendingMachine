@@ -1,10 +1,7 @@
-package Parents;
-
+package MakingSystem;
 
 public class Product {
 
-	protected int productId;
-	
 	protected int amountOfCoffeePowder;
 	protected int amountOfCreamPowder;
 	protected int amountOfSugarPowder;
@@ -13,25 +10,30 @@ public class Product {
 	protected int productPrice;
 	protected String productName;
 	
-	public Product() {
-		
-	}
-	
+
 	public Product(int amountOfCoffeePowder, int amountOfCreamPowder, int amountOfSugarPowder,
-			int amountOfWater) {
-		super();
+			int amountOfWater, int amountOfTeaPowder,String name, int price) {
 	
 		this.amountOfCoffeePowder = amountOfCoffeePowder;
 		this.amountOfCreamPowder = amountOfCreamPowder;
 		this.amountOfSugarPowder = amountOfSugarPowder;
 		this.amountOfWater = amountOfWater;
 		this.amountOfTeaPowder = amountOfTeaPowder;
+		this.productName = name;
+		this.productPrice = price;
 
 	}
-
-	public int getProductId() {
-		return productId;
+	
+	public Product(int amountOfCoffeePowder, int amountOfCreamPowder, int amountOfSugarPowder,
+			int amountOfWater, int amountOfTeaPowder) {
+		this.amountOfCoffeePowder = amountOfCoffeePowder;
+		this.amountOfCreamPowder = amountOfCreamPowder;
+		this.amountOfSugarPowder = amountOfSugarPowder;
+		this.amountOfWater = amountOfWater;
+		this.amountOfTeaPowder = amountOfTeaPowder;
 	}
+
+
 
 	public int getAmountOfCoffeePowder() {
 		return amountOfCoffeePowder;
@@ -59,8 +61,6 @@ public class Product {
 	public String getProductName() {
 		return productName;
 	}
-	
-	
 	
 	
 	

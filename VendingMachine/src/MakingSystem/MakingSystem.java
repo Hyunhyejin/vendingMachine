@@ -6,7 +6,6 @@ import java.util.Scanner;
 import Util.ResultCallBack;
 import Util.ResultEventHandler;
 import manager.StockManager;
-import Parents.Product;
 
 public class MakingSystem implements Runnable {
 
@@ -18,6 +17,7 @@ public class MakingSystem implements Runnable {
 	private CoffeeHolder coffeeHolder;
 	private CreamHolder creamHolder;
 	private SugarHolder sugarHolder;
+	private TeaHolder teaHolder;
 	private CupStack cupStack;
 	private MixPipe mixPipe;
 	
@@ -29,6 +29,7 @@ public class MakingSystem implements Runnable {
 		coffeeHolder = new CoffeeHolder();
 		creamHolder = new CreamHolder();
 		sugarHolder = new SugarHolder();
+		teaHolder = new TeaHolder();
 		cupStack = new CupStack();
 		mixPipe = new MixPipe();
 
@@ -36,12 +37,9 @@ public class MakingSystem implements Runnable {
 
 	// 시스템 가동으로 상태를 변경하는 메소드.
 	public void startMakingSystem(Product product) {
-
 		this.product = product;
 		this.state = true;
-
 		this.run();
-
 	}
 
 	@Override
@@ -104,15 +102,22 @@ public class MakingSystem implements Runnable {
 				state = false;
 				break;
 			}
+			if (teaHolder.getCurAmountOfPowder() < product.getAmountOfTeaPowder()) {
+				// System.out.println("설탕가루가 없습니다. 관리자에게 문의해 주세요.");
+				ResultEventHandler.callEvent(MakingSystem.class, "fail", "설탕 가루가 없습니다. 관리자에게 문의해 주세요.");
+				state = false;
+				break;
+			}
 
 			//믹스파이프로 재료보내기 
 			int amountOfCoffeeP = coffeeHolder.putPowderInMixPipe(product.getAmountOfCoffeePowder());
 			int amountOfCreamP = creamHolder.putPowderInMixPipe(product.getAmountOfCreamPowder());
 			int amountOfsugarP = sugarHolder.putPowderInMixPipe(product.getAmountOfSugarPowder());
 			int amountOfWater = waterTank.putWaterInMixPipe(product.getAmountOfWater());
+			int amountOfTea = teaHolder.putPowderInMixPipe(product.getAmountOfTeaPowder());
 
 			// 믹스하기
-			Product p = mixPipe.mix(amountOfCoffeeP, amountOfCreamP, amountOfsugarP, amountOfWater);
+			Product p = mixPipe.mix(amountOfCoffeeP, amountOfCreamP, amountOfsugarP, amountOfWater, amountOfTea);
 			cup.setProductInCup(p);
 
 			ResultEventHandler.callEvent(MakingSystem.class, "success", "");

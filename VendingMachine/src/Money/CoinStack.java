@@ -24,4 +24,6 @@ public class CoinStack extends MoneyStack{
 	
 	
 	
+	
+	
 }

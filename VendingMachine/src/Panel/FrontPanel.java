@@ -9,17 +9,9 @@ import javax.swing.*;
 import javax.swing.border.*;
 
 import MakingSystem.WaterTank;
+import MakingSystem.Product;
 import Money.CoinSlot;
 import Money.NoteSlot;
-import Product.Coffee1;
-import Product.Coffee2;
-import Product.Coffee3;
-import Product.MixCoffee1;
-import Product.MixCoffee2;
-import Product.MixCoffee3;
-import Product.Tea1;
-import Product.Tea2;
-import Product.Tea3;
 import Util.ResultCallBack;
 import Util.ResultEventHandler;
 import manager.Controller;
@@ -301,13 +293,13 @@ public class FrontPanel extends JFrame implements ActionListener, ResultCallBack
 	public void btnCoffee_Click(int coffeenum) {
 		switch(coffeenum) {
 		case 1:
-			controller.check(new Coffee1());
+			controller.check(new Product(3,3,3,35,0,"커피1",300));
 			break;
 		case 2:
-			controller.check(new Coffee2());
+			controller.check(new Product(5,3,3,35,0,"커피2",400));
 			break;
 		case 3:
-			controller.check(new Coffee3());
+			controller.check(new Product(7,3,3,35,0,"커피3",500));
 			break;
 		}
 
@@ -322,13 +314,13 @@ public class FrontPanel extends JFrame implements ActionListener, ResultCallBack
 	public void btnMCoffee_Click(int coffeenum) {
 		switch(coffeenum) {
 		case 1:
-			controller.check(new MixCoffee1());
+			controller.check(new Product(5,5,3,35,0,"믹스커피1",300));
 			break;
 		case 2:
-			controller.check(new MixCoffee2());
+			controller.check(new Product(5,7,3,35,0,"믹스커피2",400));
 			break;
 		case 3:
-			controller.check(new MixCoffee3());
+			controller.check(new Product(5,9,3,35,0,"믹스커피3",500));
 			break;
 		}
 
@@ -344,13 +336,13 @@ public class FrontPanel extends JFrame implements ActionListener, ResultCallBack
 	public void btnNCoffee_Click(int coffeenum) {
 		switch(coffeenum) {
 		case 1:
-			controller.check(new Tea1());
+			controller.check(new Product(0,0,0,35,10,"티1",300));
 			break;
 		case 2:
-			controller.check(new Tea2());
+			controller.check(new Product(0,0,0,35,20,"티2",400));
 			break;
 		case 3:
-			controller.check(new Tea3());
+			controller.check(new Product(0,0,0,35,30,"티3",500));
 			break;
 		}
 

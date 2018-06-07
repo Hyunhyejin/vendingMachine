@@ -7,7 +7,6 @@ public class VendingMachineMain {
 		
 		new FrontPanel();
 		
-
 	}
 
 }
