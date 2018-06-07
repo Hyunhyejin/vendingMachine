@@ -5,46 +5,38 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
-
 import Parents.Product;
-import Parents.VendingMachineStack;
+
 
 public class CupStack {
 
 	public final static int MAX_COUNT_OF_CUP = 100;
-	private static Queue<Cup> cups =  new LinkedList<Cup>();
+	private static int curCupCount = 10;
 
 	public CupStack() {
 		super();
-		for(int i =0; i<100; i++) {
-			cups.offer(new Cup());
-		}
-		
 	}
 
-	public static void put(Object ins) {
-		// TODO Auto-generated method stub
-		if(cups.size() < MAX_COUNT_OF_CUP) {
-			cups.offer((Cup)ins);
-		}else {
-			System.out.println("더 이상 컵을 넣을 수 없습니다.");
-		}
-	}
-
-	public Object get() {
-		// TODO Auto-generated method stub
-		
-		if(cups.peek()!=null) {
-			
-			return cups.poll();
-		}
-		
-		return null;
+	
+	public void put(int cupCount) {
+		curCupCount += cupCount;
 	}
 	
-	public static int getSize() {
-		return cups.size();
+	public Cup get() {
+		curCupCount --;
+		return new Cup();
 	}
+
+
+	public static int getCurCupCount() {
+		return curCupCount;
+	}
+
+
+	public static void setCurCupCount(int curCupCount) {
+		CupStack.curCupCount = curCupCount;
+	}
+
 	
 }
 

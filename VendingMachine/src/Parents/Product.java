@@ -9,6 +9,7 @@ public class Product {
 	protected int amountOfCreamPowder;
 	protected int amountOfSugarPowder;
 	protected int amountOfWater;
+	protected int amountOfTeaPowder;
 	protected int productPrice;
 	protected String productName;
 	
@@ -24,6 +25,7 @@ public class Product {
 		this.amountOfCreamPowder = amountOfCreamPowder;
 		this.amountOfSugarPowder = amountOfSugarPowder;
 		this.amountOfWater = amountOfWater;
+		this.amountOfTeaPowder = amountOfTeaPowder;
 
 	}
 
@@ -44,6 +46,9 @@ public class Product {
 	}
 
 	public int getAmountOfWater() {
+		return amountOfWater;
+	}
+	public int getAmountOfTeaPowder() {
 		return amountOfWater;
 	}
 

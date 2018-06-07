@@ -8,7 +8,7 @@ import Parents.Holder;
 public class CoffeeHolder extends Holder {
 
 
-	private static int curAmountOfPowder = 500;	//현재 홀더에 채워져 있는 가루의 양.
+	private static int curAmountOfPowder = 50;	//현재 홀더에 채워져 있는 가루의 양.
 
 	//생성자
 	public CoffeeHolder() {

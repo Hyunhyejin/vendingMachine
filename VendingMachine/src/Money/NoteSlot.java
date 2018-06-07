@@ -1,13 +1,14 @@
 package Money;
 
-import Parents.Slot;
+import Parents.MoneySlot;
 
-public class NoteSlot extends Slot {
+public class NoteSlot extends MoneySlot {
 
+	private int money;
 	@Override
 	public void accept(int money) {
 		// TODO Auto-generated method stub
-		NoteStack.addNoteMoney(money);
+		this.money = money;
 	}
 
 }

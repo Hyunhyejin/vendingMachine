@@ -3,8 +3,6 @@ package Util;
 import java.util.ArrayList;
 import java.util.List;
 
-import Parents.ResultCallBack;
-
 public class ResultEventHandler {
 	
 	private static ArrayList<ResultCallBack> eventList = new ArrayList<ResultCallBack>();

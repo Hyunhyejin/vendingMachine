@@ -1,17 +1,18 @@
 package Money;
 
-import Parents.Slot;
+import Parents.MoneySlot;
+import Parents.MoneyStack;
 
-public class CoinSlot extends Slot{
+public class CoinSlot extends MoneySlot{
 
+	private int money;
 	@Override
 	public void accept(int money) {
 		// TODO Auto-generated method stub
-		CoinStack.addCoinMoney(money);		
+		this.money = money;
 	}
 	
-	public void out(int money) {
-		CoinStack.outCoinMoney(money);
+	public int out(int money) {
+		return money;
 	}
-
 }

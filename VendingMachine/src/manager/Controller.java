@@ -1,21 +1,26 @@
+package manager;
 
 import MakingSystem.MakingSystem;
 import Money.CoinStack;
+import Money.NoteStack;
 import Parents.Product;
 
 public class Controller {
 	private int usermoney = 0;
 	private MakingSystem makingsystem;
 	private Product product;
+	private CoinStack coinStack;
+	private NoteStack noteStack;
 
 	public Controller() {
 		makingsystem = new MakingSystem();
+		coinStack = new CoinStack();
+		noteStack = new NoteStack();
 	}
-
-
+	
 	//자판기에 남아 있는 금액
 	public int getTotalMoney() {
-		return 	CoinStack.account_100*100;
+		return 	coinStack.account_100*100;
 	}
 
 	//물건 확인 
@@ -57,10 +62,11 @@ public class Controller {
 	//잔돈 반환
 	public int giveChange() {
 		int current = usermoney - product.getProductPrice();
+		coinStack.outCoinMoney(current);
 		return current;
 	}
 	
-	void init() {
+	public void init() {
 		this.usermoney =0;
 	}
 	
@@ -72,8 +78,11 @@ public class Controller {
 		return product;
 	}
 	
-	public void refundMoney() {
+	public int refundMoney() {
+		int temp = usermoney;
+		coinStack.outCoinMoney(temp);
 		usermoney = 0;
+		return temp;
 	}
 
 	

@@ -1,3 +1,4 @@
+package Panel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,11 +8,9 @@ import java.awt.event.WindowEvent;
 import javax.swing.*;
 import javax.swing.border.*;
 
-import MakingSystem.StockManager;
 import MakingSystem.WaterTank;
 import Money.CoinSlot;
 import Money.NoteSlot;
-import Parents.ResultCallBack;
 import Product.Coffee1;
 import Product.Coffee2;
 import Product.Coffee3;
@@ -21,7 +20,10 @@ import Product.MixCoffee3;
 import Product.Tea1;
 import Product.Tea2;
 import Product.Tea3;
+import Util.ResultCallBack;
 import Util.ResultEventHandler;
+import manager.Controller;
+import manager.StockManager;
 
 public class FrontPanel extends JFrame implements ActionListener, ResultCallBack{
 	Controller controller = new Controller();
@@ -171,6 +173,7 @@ public class FrontPanel extends JFrame implements ActionListener, ResultCallBack
 	public void resultCallBack(String result, String msg) {
 		// TODO Auto-generated method stub
 		if (result.equals("success")) {
+			
 			String temp = String.valueOf(controller.giveChange());
 			btnRefund.setEnabled(false);
 			txtDispenser.setText("제조 완료. 디스펜서에서 음료를 가져가세요.");
@@ -181,9 +184,12 @@ public class FrontPanel extends JFrame implements ActionListener, ResultCallBack
 			offBtn();
 			controller.init();
 			txtInput.setText("");
+			
 		} else {
+			
 			txtError.setText(msg);
 			btnSoldOut.setEnabled(true);
+			
 		}
 	}
 
@@ -358,13 +364,11 @@ public class FrontPanel extends JFrame implements ActionListener, ResultCallBack
 
 	public void btnRefund_Click() {
 		JOptionPane.showMessageDialog(null, "환불을 진행합니다.");
-		controller.refundMoney();
 		txtInput.setText("");
 		txtError.setText("환불 완료");
-		coinslot.out(controller.getMoney());
+		coinslot.out(controller.refundMoney());
 		txtError.setForeground(Color.blue);
 		btnRefund.setEnabled(false);
-		//atxtMoney.setEditable(true);
 		offBtn();
 	}
 
@@ -422,9 +426,4 @@ public class FrontPanel extends JFrame implements ActionListener, ResultCallBack
 			Thread.sleep(time);
 		} catch (InterruptedException e) {}
 	}
-
-	public static void main(String[] args){
-		new FrontPanel();
-	}
-
 }

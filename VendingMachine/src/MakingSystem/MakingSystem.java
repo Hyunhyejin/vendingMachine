@@ -3,8 +3,9 @@ package MakingSystem;
 import java.beans.EventHandler;
 import java.util.Scanner;
 
-import Parents.ResultCallBack;
+import Util.ResultCallBack;
 import Util.ResultEventHandler;
+import manager.StockManager;
 import Parents.Product;
 
 public class MakingSystem implements Runnable {
@@ -19,21 +20,16 @@ public class MakingSystem implements Runnable {
 	private SugarHolder sugarHolder;
 	private CupStack cupStack;
 	private MixPipe mixPipe;
-	private StockManager stockmanager;
-
+	
 	public MakingSystem() {
 		super();
-		stockmanager = new StockManager();
-
+		
 		waterTank = new WaterTank();
 		coilHeater = new CoilHeater();
-
 		coffeeHolder = new CoffeeHolder();
 		creamHolder = new CreamHolder();
 		sugarHolder = new SugarHolder();
-
 		cupStack = new CupStack();
-
 		mixPipe = new MixPipe();
 
 	}
@@ -46,14 +42,6 @@ public class MakingSystem implements Runnable {
 
 		this.run();
 
-	}
-
-	public boolean getStateMk() {
-		return this.state;
-	}
-
-	public void updateStock() {
-		waterTank.setCurAmountOfWater(stockmanager.getAmount_water());
 	}
 
 	@Override
@@ -117,6 +105,7 @@ public class MakingSystem implements Runnable {
 				break;
 			}
 
+			//믹스파이프로 재료보내기 
 			int amountOfCoffeeP = coffeeHolder.putPowderInMixPipe(product.getAmountOfCoffeePowder());
 			int amountOfCreamP = creamHolder.putPowderInMixPipe(product.getAmountOfCreamPowder());
 			int amountOfsugarP = sugarHolder.putPowderInMixPipe(product.getAmountOfSugarPowder());
@@ -126,16 +115,13 @@ public class MakingSystem implements Runnable {
 			Product p = mixPipe.mix(amountOfCoffeeP, amountOfCreamP, amountOfsugarP, amountOfWater);
 			cup.setProductInCup(p);
 
-			// 콜백함수로 제품제조가 완료 되었음을 알리기
-			// this.endProductCallBack.resultCallBack(this.product,"success");
+			ResultEventHandler.callEvent(MakingSystem.class, "success", "");
 
-			ResultEventHandler.callEvent(MakingSystem.class, "success", "Tt");
-
-			stockmanager.setAmount_coffee_powder(coffeeHolder.getCurAmountOfPowder());
-			stockmanager.setAmount_cream_powder(creamHolder.getCurAmountOfPowder());
-			stockmanager.setAmount_cup(cupStack.getSize());
-			stockmanager.setAmount_sugar_powder(sugarHolder.getCurAmountOfPowder());
-			stockmanager.setAmount_water(waterTank.getCurAmountOfWater());
+			StockManager.setAmount_coffee_powder(coffeeHolder.getCurAmountOfPowder());
+			StockManager.setAmount_cream_powder(creamHolder.getCurAmountOfPowder());
+			StockManager.setAmount_cup(cupStack.getCurCupCount());
+			StockManager.setAmount_sugar_powder(sugarHolder.getCurAmountOfPowder());
+			StockManager.setAmount_water(waterTank.getCurAmountOfWater());
 
 			state = false;
 			break;

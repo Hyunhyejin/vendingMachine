@@ -1,9 +1,15 @@
 package Money;
 
-public class NoteStack {
-	static int account_1000 = 10;
-	
-	public static void addNoteMoney(int notemoney) {
-			account_1000++;
+import Parents.MoneyStack;
+
+public class NoteStack extends MoneyStack {
+
+	private int account_1000 = 10;
+
+	@Override
+	public void addMoney(int money) {
+		// TODO Auto-generated method stub
+		account_1000++;
 	}
+
 }

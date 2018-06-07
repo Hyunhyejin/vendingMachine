@@ -1,20 +1,27 @@
 package Money;
 
-public class CoinStack {
-	public static int account_100 = 10;
-	public static int account_500 = 10;
+import Parents.MoneyStack;
+
+public class CoinStack extends MoneyStack{
+	public  int account_100 = 10;
+	public  int account_500 = 10;
 	
-	public static void addCoinMoney(int coinmoney) {
-		if (coinmoney == 100)
-			account_100++;
-		else if (coinmoney == 500)
-			account_500++;
-	}
 	
-	public static void outCoinMoney(int money) {
+	public  void outCoinMoney(int money) {
 		int out_count = money / 100;
 		account_100 -= out_count;
 	}
+
+	@Override
+	public void addMoney(int money) {
+		// TODO Auto-generated method stub
+		if (money == 100)
+			account_100++;
+		else if (money == 500)
+			account_500++;
+	}
+	
+	
 	
 	
 }

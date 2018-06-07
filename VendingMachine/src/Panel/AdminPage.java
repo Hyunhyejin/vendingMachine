@@ -1,3 +1,4 @@
+package Panel;
 import java.awt.*;
 import java.awt.event.*;
 import java.lang.reflect.Field;
@@ -7,9 +8,9 @@ import javax.swing.border.*;
 
 import MakingSystem.CoffeeHolder;
 import MakingSystem.CupStack;
-import MakingSystem.StockManager;
 import MakingSystem.WaterTank;
 import Parents.Holder;
+import manager.StockManager;
 
 public class AdminPage extends JFrame implements ActionListener {
 	
@@ -124,7 +125,7 @@ public class AdminPage extends JFrame implements ActionListener {
 	}
 	
 	public void exitWindow() {
-		System.exit(0);
+		dispose();
 	}
 	
 	public void applySetting() {
@@ -143,28 +144,31 @@ public class AdminPage extends JFrame implements ActionListener {
 		String Watert = stockWater.getText();
 		int Watertmp = Integer.parseInt(Watert);
 		
-		if(CupStack.MAX_COUNT_OF_CUP - Cuptmp < Cuptmp) {
+		if(CupStack.MAX_COUNT_OF_CUP > StockManager.getAmount_cup() +Cuptmp) {
 			StockManager.addAmount_cup(Cuptmp);
 		}
-		
-		if(WaterTank.MAX_CAPACITY - Watertmp < Watertmp) {
+//		
+		if(WaterTank.MAX_CAPACITY  >StockManager.getAmount_water() + Watertmp) {
 			StockManager.addAmount_water(Watertmp);
 		}
 		
-		if(StockManager.getMaxCapacityOfHolder()-Coffeetmp <Coffeetmp) {
+		if(StockManager.getMaxCapacityOfHolder() >StockManager.getAmount_coffee_powder()+ Coffeetmp) {
 			StockManager.addAmount_coffee_powder(Coffeetmp);
 		}
 		
-		if(StockManager.getMaxCapacityOfHolder()-CreamPowdertmp <CreamPowdertmp) {
+		if(StockManager.getMaxCapacityOfHolder() > StockManager.getAmount_cream_powder() +CreamPowdertmp) {
 			StockManager.addAmount_cream_powder(CreamPowdertmp);
 		}
 		
-		if(StockManager.getMaxCapacityOfHolder()-SugarPowdertmp <SugarPowdertmp) {
+		if(StockManager.getMaxCapacityOfHolder() >StockManager.getAmount_sugar_powder()+ SugarPowdertmp) {
 			StockManager.addAmount_sugar_powder(SugarPowdertmp);
 		}
 		
+		resetSetting();
 		
 	}
+	
+
 	
 	public void resetSetting() {
 		int tmpCoffee = StockManager.getAmount_coffee_powder();
